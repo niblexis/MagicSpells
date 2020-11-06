@@ -157,6 +157,7 @@ public class ConditionManager {
 		addCondition("griefpreventionisowner", GriefPreventionIsOwnerCondition.class);
 		addCondition("slotselected", SlotSelectedCondition.class);
 		addCondition("hasscoreboardtag", HasScoreboardTagCondition.class);
+		addCondition("sheared", ShearedCondition.class);
 		addCondition("hasspell", HasSpellCondition.class);
 	}
 
