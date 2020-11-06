@@ -72,6 +72,7 @@ public class SpellEffectManager {
 		addSpellEffect("effectlib", EffectLibEffect.class);
 		addSpellEffect("effectlibline", EffectLibLineEffect.class);
 		addSpellEffect("effectlibentity", EffectLibEntityEffect.class);
+		addSpellEffect("playerlist", PlayerListEffect.class);
 	}
 
 }
