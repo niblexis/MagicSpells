@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.List;
 import java.util.HashMap;
 
+import com.nisovin.magicspells.spelleffects.EffectPosition;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.enchantments.Enchantment;
@@ -45,6 +46,7 @@ public class EnchantSpell extends InstantSpell {
 		ItemStack targetItem = livingEntity.getEquipment().getItemInMainHand();
 		if (targetItem == null) return PostCastAction.ALREADY_HANDLED;
 		enchant(targetItem);
+		playSpellEffects(EffectPosition.CASTER, livingEntity);
 		return PostCastAction.HANDLE_NORMALLY;
 	}
 	
