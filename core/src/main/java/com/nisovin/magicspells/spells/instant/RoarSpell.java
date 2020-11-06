@@ -3,6 +3,7 @@ package com.nisovin.magicspells.spells.instant;
 import java.util.List;
 
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.LivingEntity;
 
@@ -21,13 +22,9 @@ public class RoarSpell extends InstantSpell {
 
 	public RoarSpell(MagicConfig config, String spellName) {
 		super(config, spellName);
-		
 		radius = getConfigFloat("radius", 8F);
-
 		strNoTarget = getConfigString("str-no-target", "No targets found.");
-
 		cancelIfNoTargets = getConfigBoolean("cancel-if-no-targets", true);
-
 		if (radius > MagicSpells.getGlobalRadius()) radius = MagicSpells.getGlobalRadius();
 	}
 
@@ -39,8 +36,9 @@ public class RoarSpell extends InstantSpell {
 			for (Entity entity : entities) {
 				if (!(entity instanceof LivingEntity)) continue;
 				if (entity instanceof Player) continue;
+				if (!(entity instanceof Mob)) continue;
 				if (!validTargetList.canTarget(livingEntity, entity)) continue;
-				MagicSpells.getVolatileCodeHandler().setTarget((LivingEntity) entity, livingEntity);
+				((Mob) entity).setTarget(livingEntity);
 				playSpellEffectsTrail(livingEntity.getLocation(), entity.getLocation());
 				playSpellEffects(EffectPosition.TARGET, entity);
 				count++;
