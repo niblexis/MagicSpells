@@ -75,6 +75,12 @@ public class FishListener extends PassiveListener {
 		switch (state) {
 			case IN_GROUND:
 			case CAUGHT_FISH:
+				casted = passiveSpell.activate(player, entity instanceof LivingEntity ? (LivingEntity) entity : null);
+				event.setExpToDrop(0);
+				if (event.getCaught() != null) event.getCaught().remove();
+				if (!cancelDefaultAction(casted)) return;
+				event.setCancelled(true);
+				break;
 			case FAILED_ATTEMPT:
 				if (!states.contains(state)) return;
 				if (!isCancelStateOk(event.isCancelled())) return;
