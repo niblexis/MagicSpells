@@ -21,14 +21,14 @@ public class InRegionCondition extends Condition {
 	private String worldName;
 	private String regionName;
 	private ProtectedRegion region;
-	
+
 	@Override
 	public boolean initialize(String var) {
 		if (var == null) return false;
-		
+
 		worldGuard = (WorldGuardPlugin) CompatBasics.getPlugin("WorldGuard");
 		if (worldGuard == null || !worldGuard.isEnabled()) return false;
-		
+
 		String[] split = var.split(":");
 		if (split.length == 2) {
 			worldName = split[0];
@@ -50,24 +50,15 @@ public class InRegionCondition extends Condition {
 
 	@Override
 	public boolean check(LivingEntity livingEntity, Location location) {
-		if (region == null) {
-			World world = Bukkit.getWorld(worldName);
-
-			if (world == null) return false;
-			if (!world.equals(location.getWorld())) return false;
-
-			com.sk89q.worldedit.world.World aWorld = BukkitAdapter.adapt(world);
-
-			RegionContainer regionContainer = WorldGuard.getInstance().getPlatform().getRegionContainer();
-			RegionManager regionManager = regionContainer.get(aWorld);
-
-			if (regionManager == null) return false;
-			region = regionManager.getRegion(regionName);
-		}
-
-		if (region == null) return false;
-
-		return region.contains(location.getBlockX(), location.getBlockY(), location.getBlockZ());
+		World world = Bukkit.getWorld(worldName);
+		if (world == null) return false;
+		if (world != location.getWorld()) return false;
+		com.sk89q.worldedit.world.World aWorld = BukkitAdapter.adapt(world);
+		RegionContainer regionContainer = WorldGuard.getInstance().getPlatform().getRegionContainer();
+		RegionManager regionManager = regionContainer.get(aWorld);
+		if (regionManager == null) return false;
+		ProtectedRegion region = regionManager.getRegion(this.regionName);
+		return region != null && region.contains(location.getBlockX(), location.getBlockY(), location.getBlockZ());
 	}
 
 }
