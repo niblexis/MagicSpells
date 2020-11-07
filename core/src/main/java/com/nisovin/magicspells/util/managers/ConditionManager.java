@@ -158,6 +158,7 @@ public class ConditionManager {
 		addCondition("slotselected", SlotSelectedCondition.class);
 		addCondition("hasscoreboardtag", HasScoreboardTagCondition.class);
 		addCondition("sheared", ShearedCondition.class);
+		addCondition("inpainting", InPaintingCondition.class);
 	}
 
 }
