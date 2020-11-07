@@ -91,6 +91,7 @@ public class MagicSpells extends JavaPlugin {
 	// Container vars
 	private ManaHandler manaHandler;
 	private MoneyHandler moneyHandler;
+	private GoldHandler goldHandler;
 	private MagicXpHandler magicXpHandler;
 	private VolatileCodeHandle volatileCodeHandle;
 
@@ -330,6 +331,7 @@ public class MagicSpells extends JavaPlugin {
 		bossBarManager = new BossBarManager();
 		attributeManager = new AttributeManager();
 		if (CompatBasics.pluginEnabled("Vault")) moneyHandler = new MoneyHandler();
+		goldHandler = new GoldHandler();
 		lifeLengthTracker = new LifeLengthTracker();
 
 		// Call loading event
@@ -1069,6 +1071,8 @@ public class MagicSpells extends JavaPlugin {
 		return plugin.moneyHandler;
 	}
 
+	public static GoldHandler getGoldHandler() { return plugin.goldHandler; }
+
 	public static MagicXpHandler getMagicXpHandler() {
 		return plugin.magicXpHandler;
 	}
@@ -1551,6 +1555,7 @@ public class MagicSpells extends JavaPlugin {
 		strCantCast = null;
 		strCantBind = null;
 		moneyHandler = null;
+		goldHandler = null;
 		expBarManager = null;
 		strOnCooldown = null;
 		strWrongWorld = null;

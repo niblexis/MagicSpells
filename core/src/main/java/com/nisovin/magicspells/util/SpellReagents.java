@@ -19,8 +19,9 @@ public class SpellReagents {
 	private int levels;
 	private int durability;
 	private float money;
+	private int copper;
 	private Map<String, Double> variables;
-	
+
 	public SpellReagents() {
 		items = null;
 		mana = 0;
@@ -29,6 +30,7 @@ public class SpellReagents {
 		experience = 0;
 		levels = 0;
 		money = 0;
+		copper = 0;
 		variables = null;
 	}
 	
@@ -43,6 +45,7 @@ public class SpellReagents {
 		experience = other.experience;
 		levels = other.levels;
 		money = other.money;
+		copper = other.copper;
 		if (other.variables != null) {
 			variables = new HashMap<>();
 			variables.putAll(other.variables);
@@ -131,7 +134,15 @@ public class SpellReagents {
 	public void setMoney(float newMoney) {
 		money = newMoney;
 	}
-	
+
+	public int getCopper() {
+		return copper;
+	}
+
+	public void setCopper(int newCopper) {
+		copper = newCopper;
+	}
+
 	public Map<String, Double> getVariables() {
 		return variables;
 	}
@@ -148,7 +159,7 @@ public class SpellReagents {
 			variables.putAll(newVariables);
 		}
 	}
-	
+
 	@Override
 	public SpellReagents clone() {
 		SpellReagents other = new SpellReagents();
@@ -165,6 +176,7 @@ public class SpellReagents {
 		other.levels = levels;
 		other.durability = durability;
 		other.money = money;
+		other.copper = copper;
 		if (variables != null) {
 			other.variables = new HashMap<>();
 			for (Map.Entry<String, Double> entry : variables.entrySet()) {
@@ -191,6 +203,7 @@ public class SpellReagents {
 		other.levels = Math.round(levels * x);
 		other.durability = Math.round(durability * x);
 		other.money = money * x;
+		other.copper = Math.round(copper * x);
 		if (variables != null) {
 			other.variables = new HashMap<>();
 			for (Map.Entry<String, Double> entry : variables.entrySet()) {
@@ -211,6 +224,7 @@ public class SpellReagents {
 			+ ",levels=" + levels
 			+ ",durability=" + durability
 			+ ",money=" + money
+			+ ",copper=" + copper
 			+ ",variables=" + variables
 			+ ']';
 	}
