@@ -1151,7 +1151,8 @@ public abstract class Spell implements Comparable<Spell>, Listener {
 			//Copper costs
 			if (copperCost > 0) {
 				GoldHandler goldHandler = MagicSpells.getGoldHandler();
-				if (goldHandler == null && goldHandler.getTotalGold((Player) livingEntity) < copperCost) return false;
+				if (goldHandler == null) return false;
+				if (goldHandler.getTotalGold((Player) livingEntity) < copperCost) return false;
 			}
 
 			// Variable costs
