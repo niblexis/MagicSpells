@@ -127,6 +127,7 @@ public class PassiveManager {
 		addListener("worldchange", WorldChangeListener.class);
 		addListener("fish", FishListener.class);
 		addListener("breakitem", ItemBreakListener.class);
+		addListener("move", MoveListener.class);
 	}
 	
 }
